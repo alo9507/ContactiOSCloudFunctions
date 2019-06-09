@@ -73,6 +73,9 @@ export const nodReceived = functions.firestore.document("/users/{userId}/nods/no
 							title: `${senderName} nodded at you!`,
 							body: "Nod back?",
 							sound: "default"
+						},
+						data: {
+							senderId: senderId
 						}
 					}
 				}
