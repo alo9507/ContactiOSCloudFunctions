@@ -99,13 +99,13 @@ export const messageReceived = functions.firestore
     .onCreate((snap, context) => {
       const newValue = snap.data();
 			let recipientRef
-			let sender: string
+			let senderName: string
 			let body: string
 
 			if (newValue) {
 				console.log("newValue is not null")
-				 sender = newValue.sender
 				 body = newValue.body
+				 senderName = newValue.senderName
 				 recipientRef = db
 					.collection('users')
 					.doc(newValue.recipient)
@@ -127,7 +127,7 @@ export const messageReceived = functions.firestore
 	
 						let payload = {
 							notification: {
-								title: `${sender}`,
+								title: `${senderName}`,
 								body: `${body}`,
 								sound: "default"
 							}
